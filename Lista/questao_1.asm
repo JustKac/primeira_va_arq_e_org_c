@@ -4,7 +4,7 @@
 	i: .asciiz "Digite uma palavra ou texto: "
 	ii: .asciiz "Digite um caractere que faca parte fa palavra ou texto: "
 	iii: .asciiz "\nDigite outro caractere que faca parte fa palavra ou texto: "
-	iiiii: .asciiz "\nA nova palavra ou texto é: "
+	v: .asciiz "\nA nova palavra ou texto é: "
 	
 	palavra: .space 250
 	
@@ -51,7 +51,7 @@
   	lb $a0, ($t0)  		# carrega o próximo caractere da string em $a0
   	beq $t1, $a0, altera	
   	beqz $a0, continue 	# se o caractere for nulo, sair do loop
-  	addi $t0, $t0, 1  	# avança para o próximo caractere da string
+  	addi $t0, $t0, 1  	# incrementa o endereço da string
   	j loop   		# volta para o início do loop
   	
   	altera:
@@ -63,12 +63,12 @@
 	continue:
 	
 	li $v0, 4 		# imprimir uma String
-	la $a0, iiiii		# $a0 = "A nova palavra é: "
+	la $a0, v		# $a0 = "A nova palavra é: "
 	syscall
 	
 	li $v0, 4		# Imprimir uma String
 	la $a0, palavra		# $a0 = entrada do usuário alterada
 	syscall 
 	
-  	li $v0, 10   # define o valor da syscall para sair do programa
-  	syscall      # chama a syscall para sair do programa
+  	li $v0, 10   		# define o valor da syscall para sair do programa
+  	syscall      		# chama a syscall para sair do programa
