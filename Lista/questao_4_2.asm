@@ -2,13 +2,14 @@
 
 		source: .asciiz "Texto usado de base para testes."
 		destination: .space 250
+		num: .word 11
 	
 .text
 
 		main:
     			la $a0, source 						# carrega o endereço de source em $a0
     			la $a1, destination 				# carrega o endereço de destination em $a1
-    			li $a2, 11							# adiciona um valor ao "contador"
+    			lw $a2, num							# adiciona um valor ao "contador"
   				jal memcpy							# chama a função memcpy 
     			jal imprimeString					# chama a função imprimeString
     
